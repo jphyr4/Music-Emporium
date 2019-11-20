@@ -6,7 +6,7 @@ function ProductListItem(props) {
   const realPrice = props.product.price / 100;
 
   return (
-    <div className="container" style={{ width: '18rem', height: '25rem' }}>
+    <div className="container" onClick={() => props.setView('details', { productId: props.product.productId })}style={{ width: '18rem', height: '25rem' }}>
       <div className="row">
         <div className="col-md-4"></div>
         <div className="card">

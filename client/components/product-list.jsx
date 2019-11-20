@@ -23,7 +23,7 @@ export default class ProductList extends React.Component {
   }
 
   render() {
-    const tempArray = this.state.products.map((product, index) => <ProductListItem key={index} product={product} />);
+    const tempArray = this.state.products.map((product, index) => <ProductListItem key={index} product={product} setView={this.props.setView}/>);
     return (
       <div>
         <div className="container col-md-19">
