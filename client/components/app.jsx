@@ -35,7 +35,12 @@ export default class App extends React.Component {
 
       );
     } else {
-      return <ProductDetails/>;
+      return (
+        <div>
+          <Header/>,
+          <ProductDetails setView={this.setView} stateProp={this.state.view.params}/>
+        </div>
+      );
 
     }
   }
