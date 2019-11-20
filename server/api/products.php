@@ -10,7 +10,8 @@ if (isset($_GET['productId'])) {
               `name`,
               `price`,
               `image`,
-              `shortDescription`
+              `shortDescription`,
+              `longDescription`
             FROM `products` WHERE `productId`= {$id}";
   $result = $link->query($sql);
   $products = $result->fetch_all(MYSQLI_ASSOC);
