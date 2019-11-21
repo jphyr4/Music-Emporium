@@ -14,27 +14,28 @@ function checkIdNumber($productId){
   }
 }
 
-if ((!isset($_SESSION['cartId']))) {
-  $link = get_db_link();
-  $message = check_connection($link);
-  $response['body'] = [];
-  send($response);
-}
 
 if ($request['method'] === 'GET') {
 
   if ((isset($_SESSION['cartId']))) {
     $link = get_db_link();
     $message = check_connection($link);
+    $cartIdSave = $_SESSION['cartId'];
     $sqlSesh = "
-    SELECT * FROM `cartItems`
-    WHERE `cartId` = {$_SESSION['cartId']}
+    SELECT c.cartItemId, p.productId, p.name, p.price, p.image, p.shortDescription
+    FROM products AS p
+    JOIN cartItems AS c
+    ON p.productId = c.productId
+    WHERE c.cartId = $cartIdSave
     ";
     $returnVal = $link->query($sqlSesh);
     $cartItems = $returnVal->fetch_all(MYSQLI_ASSOC);
-    $response['body'] = [
-      $cartItems
-    ];
+    $response['body'] = $cartItems;
+    send($response);
+  } else {
+    $link = get_db_link();
+    $message = check_connection($link);
+    $response['body'] = [];
     send($response);
   }
 
@@ -80,9 +81,8 @@ if ($request['method'] === 'POST') {
     $result4 = $link->query($sql4);
     $fetchReturn = $result4->fetch_all(MYSQLI_ASSOC);
     $joinedCart = $fetchReturn;
-    $response['body'] = [
-      $joinedCart
-    ];
+    $response['body'] = $joinedCart[0];
+
     send($response);
   }
 
