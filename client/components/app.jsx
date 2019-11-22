@@ -3,7 +3,6 @@ import ProductList from './product-list';
 import Header from './header';
 import ProductDetails from './product-details';
 import CartSummary from './cartSummary';
-// import CartSummary from './cartSummary';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -55,8 +54,6 @@ export default class App extends React.Component {
     if (this.state.view.name === 'catalog') {
       return (
         <div>
-
-          {/* <CartSummary cartItemProp={this.state.cart}/> */}
           <Header cartItemCount={this.state.cart.length} clickCart={this.setView}/>,
           <ProductList setView={this.setView}/>
         </div>
