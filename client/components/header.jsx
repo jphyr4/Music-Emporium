@@ -7,7 +7,7 @@ function Header(props) {
       <nav className="navbar navbar-dark bg-primary">
         <h1 className="col-8">Wicked Sales</h1>
 
-        <i className="fas fa-shopping-cart fa-3x">{props.cartItemCount}</i>
+        <i className="fas fa-shopping-cart fa-3x" onClick={() => props.clickCart('cart', {})}>{props.cartItemCount}</i>
       </nav>
 
     </div>
